@@ -1,7 +1,9 @@
 This is a sample starting kit for the Persodata challenge. 
 It uses paintings from WikiArt (the Visual Art Encyclopedia). The data here was preprocessed : the images were resized to a fixed resolution of (224,244,3) and then feature extraction was conducted using MobileNets transforming each image into a vector of size 1024 containing the essential information of the image.
 
-Half of the images in this data set are fake paintings which were generated through neural style transfer and Generative Adversarial Network. The task for this challenge is a binary classification whose goal is to detect the fake paintings.
+Half of the images in this data set are fake paintings which were generated through neural style transfer and Generative Adversarial Network. 
+This starting kit contains 50 samples for each set : training, validation and testing.
+The task for this challenge is a binary classification whose goal is to detect the fake paintings.
 
 References and credits: 
 https://www.wikiart.org/
