@@ -8,7 +8,7 @@ Half of the images in this data set are fake paintings which were generated thro
 The whole data set thus contains about 50 000 images.
 The task for this challenge is a binary classification whose goal is to detect the fake paintings.
 
-References and credits: 
+### References and credits: 
 
 https://www.wikiart.org/
 
