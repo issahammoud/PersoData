@@ -1,8 +1,10 @@
-This is a sample starting kit for the Iris challenge. 
-It uses the well known Iris dataset from Fisher's classic paper (Fisher, 1936). The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.
+This is a sample starting kit for the Persodata challenge. 
+It uses paintings from WikiArt (the Visual Art Encyclopedia). The data here was preprocessed : the images were resized to a fixed resolution of (224,244,3) and then feature extraction was conducted using MobileNets transforming each image into a vector of size 1024 containing the essential information of the image.
+
+Half of the images in this data set are fake paintings which were generated through neural style transfer (about 10 000) and Generative Adversarial Network (about 15 000). Therefore, the task for this challenge is a binary classification whose goal is to detect the fake paintings.
 
 References and credits: 
-R. A. Fisher. The use of multiple measurements in taxonomic problems. Annual Eugenics, 7, Part II, 179-188 (1936). 
+https://www.wikiart.org/
 
 Prerequisites:
 Install Anaconda Python 3.6.6 
