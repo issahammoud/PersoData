@@ -10,6 +10,6 @@ The task for this challenge is a binary classification whose goal is to detect t
 
 References and credits: 
 https://www.wikiart.org/
+
 The competition protocol was designed by Isabelle Guyon.
-The starting kit was adapted from an Jupyper notebook designed by Balazs Kegl for the RAMP platform. 
 
