@@ -327,7 +327,6 @@ class Bundle:
 	def get_data_name(self):
 		''' Get the name of the dataset.'''
 		file_names = ls(os.path.join(self.sample_data, '*.*'))
-		#print(file_names)
 		[dirnm, filenm] = os.path.split(file_names[0])
 		lnm = filenm.split('_')
 		return lnm[0]
