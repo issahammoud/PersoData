@@ -10,7 +10,6 @@ import pickle
 import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
-from sklearn.ensemble import RandomForestClassifier
 from sklearn import tree
 class model (BaseEstimator):
     def __init__(self):
@@ -46,7 +45,6 @@ class model (BaseEstimator):
         if (self.num_train_samples != num_train_samples):
             print("ARRGH: number of samples in X and y do not match!")
         self.is_trained=True
-        #clf = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
         clf = tree.DecisionTreeClassifier()
         clf.fit(X, y)
         self.model = clf
