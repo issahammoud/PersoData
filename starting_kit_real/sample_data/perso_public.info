@@ -1,0 +1,16 @@
+usage = 'Sample dataset perso data'
+name = 'perso'
+task = 'bi-class.classification'
+target_type = 'Numerical'
+feat_type = 'Numerical'
+metric = 'bac_metric'
+time_budget =  1200
+feat_num =     50176
+target_num =     2
+label_num =     2
+train_num =   54
+valid_num =    48
+test_num =    48
+has_categorical =     0
+has_missing =     0
+is_sparse =     0

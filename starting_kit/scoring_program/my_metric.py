@@ -14,5 +14,5 @@ def mse_metric(solution, prediction):
     return np.mean(mse)
 def AUC_metric(solution, prediction):
 	fpr, tpr, thresholds = metrics.roc_curve(solution, prediction, pos_label=1)
-	return (fpr,tpr,metrics.auc(fpr, tpr))
+	return metrics.auc(fpr, tpr)
 
