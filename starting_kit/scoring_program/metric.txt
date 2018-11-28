@@ -1,1 +1,1 @@
-auc_binary
+accuracy_score
