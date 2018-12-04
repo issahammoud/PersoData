@@ -22,7 +22,7 @@ class model (BaseEstimator):
         self.num_feat=1
         self.num_labels=1
         self.is_trained=False
-        self.model = None
+        self.model = clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr')
     def fit(self, X, y):
         '''
         This function should train the model parameters.
@@ -46,8 +46,7 @@ class model (BaseEstimator):
         if (self.num_train_samples != num_train_samples):
             print("ARRGH: number of samples in X and y do not match!")
         self.is_trained=True
-        clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr').fit(X, y)
-        self.model = clf
+        self.model = self.model.fit(X, y)
 
     def predict(self, X):
         '''

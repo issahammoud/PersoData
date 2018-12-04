@@ -11,6 +11,9 @@ import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
 from sklearn import tree
+import theano
+from theano import tensor as T
+from theano.tensor.nnet import conv2d
 class model (BaseEstimator):
     def __init__(self):
         '''
