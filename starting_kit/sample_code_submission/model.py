@@ -11,6 +11,7 @@ import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
 from sklearn import tree
+from sklearn.linear_model import LogisticRegression
 class model (BaseEstimator):
     def __init__(self):
         '''
@@ -45,8 +46,7 @@ class model (BaseEstimator):
         if (self.num_train_samples != num_train_samples):
             print("ARRGH: number of samples in X and y do not match!")
         self.is_trained=True
-        clf = tree.DecisionTreeClassifier()
-        clf.fit(X, y)
+        clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr').fit(X, y)
         self.model = clf
 
     def predict(self, X):
@@ -67,10 +67,10 @@ class model (BaseEstimator):
         if (self.num_feat != num_feat):
             print("ARRGH: number of features in X does not match training data!")
         print("PREDICT: dim(y)= [{:d}, {:d}]".format(num_test_samples, self.num_labels))
-        y = self.model.predict(X)
+        y = self.model.predict_proba(X)
         # If you uncomment the next line, you get pretty good results for the Iris data :-)
         #y = np.round(X[:,3])
-        return y
+        return y[:,1]
 
     def save(self, path="./"):
         pickle.dump(self.model, open(path + '_model.pickle', "wb"))

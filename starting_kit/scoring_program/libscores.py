@@ -72,7 +72,7 @@ def get_metric():
     	try:
     		scoring_function = getattr(libscores, metric_name)
     	except:
-    		scoring_function = getattr(metrics, metric_name)
+            scoring_function = getattr(metrics, metric_name)
     return metric_name, scoring_function
 
 def read_array(filename):
