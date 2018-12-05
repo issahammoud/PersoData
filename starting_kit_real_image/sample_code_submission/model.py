@@ -11,9 +11,39 @@ import numpy as np   # We recommend to use numpy arrays
 from os.path import isfile
 from sklearn.base import BaseEstimator
 from sklearn import tree
-import theano
-from theano import tensor as T
-from theano.tensor.nnet import conv2d
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
+def CNN_preprocess(X,img_rows=224, img_cols=224,num_classes = 2) :
+    if K.image_data_format() == 'channels_first':
+        X = X.reshape(X.shape[0], 1, img_rows, img_cols)
+        input_shape = (1, img_rows, img_cols)
+    else:
+        X = X.reshape(X.shape[0], img_rows, img_cols, 1)
+        input_shape = (img_rows, img_cols, 1)
+    X= X.astype('float32')
+    return X
+
+def CNN_model (batch_size = 128,num_classes = 2,epochs = 1,img_rows=224, img_cols=224) : 
+    input_shape=(img_rows, img_cols, 1)
+    model = Sequential()
+    model.add(Conv2D(32, kernel_size=(3, 3),
+                 activation='relu',
+                 input_shape=input_shape))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Flatten())
+    model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_classes, activation='sigmoid'))
+    model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.Adadelta(),metrics=['accuracy'])
+    return model
+
 class model (BaseEstimator):
     def __init__(self):
         '''
@@ -24,7 +54,7 @@ class model (BaseEstimator):
         self.num_feat=1
         self.num_labels=1
         self.is_trained=False
-        self.model = None
+        self.model = CNN_model()
     def fit(self, X, y):
         '''
         This function should train the model parameters.
@@ -48,9 +78,9 @@ class model (BaseEstimator):
         if (self.num_train_samples != num_train_samples):
             print("ARRGH: number of samples in X and y do not match!")
         self.is_trained=True
-        clf = tree.DecisionTreeClassifier()
-        clf.fit(X, y)
-        self.model = clf
+        X_new = CNN_preprocess(X)
+        y_new = keras.utils.to_categorical(y, 2)
+        self.model.fit(X_new,y_new)
 
     def predict(self, X):
         '''
@@ -70,10 +100,11 @@ class model (BaseEstimator):
         if (self.num_feat != num_feat):
             print("ARRGH: number of features in X does not match training data!")
         print("PREDICT: dim(y)= [{:d}, {:d}]".format(num_test_samples, self.num_labels))
-        y = self.model.predict(X)
+        X_new = CNN_preprocess(X) 
+        y = self.model.predict_proba(X_new)
         # If you uncomment the next line, you get pretty good results for the Iris data :-)
         #y = np.round(X[:,3])
-        return y
+        return y[:,1]
 
     def save(self, path="./"):
         pickle.dump(self.model, open(path + '_model.pickle', "wb"))
