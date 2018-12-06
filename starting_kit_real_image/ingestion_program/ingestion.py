@@ -106,7 +106,19 @@ overall_start = time.time()         # <== Mark starting time
 import os
 from sys import argv, path
 import datetime
+from keras import backend as K
 the_date = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+
+
+def CNN_preprocess(X,img_rows=224, img_cols=224,num_classes = 2) :
+    if K.image_data_format() == 'channels_first':
+        X = X.reshape(X.shape[0], 1, img_rows, img_cols)
+        input_shape = (1, img_rows, img_cols)
+    else:
+        X = X.reshape(X.shape[0], img_rows, img_cols, 1)
+        input_shape = (img_rows, img_cols, 1)
+    X= X.astype('float32')
+    return X
 
 # =========================== BEGIN PROGRAM ================================
 
@@ -226,9 +238,12 @@ if __name__=="__main__" and debug_mode<4:
             
         # Make predictions
         # -----------------
-        Y_train = M.predict(D.data['X_train'])
-        Y_valid = M.predict(D.data['X_valid'])
-        Y_test = M.predict(D.data['X_test'])                         
+        X_train = CNN_preprocess(D.data['X_train'])
+        X_valid = CNN_preprocess(D.data['X_valid'])
+        X_test = CNN_preprocess(D.data['X_test'])
+        Y_train = M.predict(X_train )
+        Y_valid = M.predict(X_valid)
+        Y_test = M.predict(X_test)                         
         vprint( verbose,  "[+] Prediction success, time spent so far %5.2f sec" % (time.time() - start))
         # Write results
         # -------------
@@ -253,6 +268,7 @@ if __name__=="__main__" and debug_mode<4:
         vprint( verbose,  "[-] Done, but some tasks aborted because time limit exceeded")
         vprint( verbose,  "[-] Overall time spent %5.2f sec " % overall_time_spent + " > Overall time budget %5.2f sec" % overall_time_budget)
               
+
 
 
 
