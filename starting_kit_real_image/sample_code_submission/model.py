@@ -17,7 +17,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
-def CNN_preprocess(X,img_rows=224, img_cols=224,num_classes = 2) :
+def CNN_preprocess(X,img_rows=128, img_cols=128,num_classes = 2) :
     if K.image_data_format() == 'channels_first':
         X = X.reshape(X.shape[0], 1, img_rows, img_cols)
         input_shape = (1, img_rows, img_cols)
@@ -27,13 +27,13 @@ def CNN_preprocess(X,img_rows=224, img_cols=224,num_classes = 2) :
     X= X.astype('float32')
     return X
 
-def CNN_model (batch_size = 128,num_classes = 2,epochs = 1,img_rows=224, img_cols=224) : 
+def CNN_model (batch_size = 128,num_classes = 2,epochs = 10,img_rows=128, img_cols=128) : 
     input_shape=(img_rows, img_cols, 1)
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
                  input_shape=input_shape))
-    model.add(Conv2D(64, (3, 3), activation='relu'))
+    #model.add(Conv2D(64, (3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
     model.add(Flatten())
@@ -42,6 +42,7 @@ def CNN_model (batch_size = 128,num_classes = 2,epochs = 1,img_rows=224, img_col
     model.add(Dense(num_classes, activation='sigmoid'))
     model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=keras.optimizers.Adadelta(),metrics=['accuracy'])
+    model.summary()
     return model
 
 class model (BaseEstimator):
