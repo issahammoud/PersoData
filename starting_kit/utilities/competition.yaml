@@ -4,8 +4,8 @@
 
 # Isabelle Guyon -- November 19, 2018
 
-title: PersoData2
-description: The task for this challenge is a binary classification whose goal is to detect the fake paintings.
+title: Sample competition
+description: Sample competition M2AIC 2018-2019
 image: logo.jpg
 has_registration: False                 # We do not check participants, registration is free
 force_submission_to_leaderboard: True   # If false, participants must submit manually, do not change
@@ -35,10 +35,10 @@ phases:
     force_best_submission_to_leaderboard: True      # Participants will see their best submission on the leaderboard
     starting_kit: starting_kit.zip                  # The starting kit you prepared
     ingestion_program: ingestion_program.zip        # The ingestion program (the same for both phases)
-    public_data: 281a8de4-85d3-4064-84da-d684708d54f7                 # Same as input data (available for download by the participants)
-    input_data: 281a8de4-85d3-4064-84da-d684708d54f7                     # The data used by the ingestion program (and the code of the participants) in both phases
+    public_data: input_data.zip                     # Same as input data (available for download by the participants)
+    input_data: input_data.zip                      # The data used by the ingestion program (and the code of the participants) in both phases
     scoring_program: scoring_program.zip            # The scoring program (the same for both phases)
-    reference_data: 8a6603b1-0866-4703-8058-b866e1ea8de3           # The truth values (solution) for phase 1 used by the scoring program
+    reference_data: reference_data_1.zip            # The truth values (solution) for phase 1 used by the scoring program
     color: green   
   2:
     phasenumber: 2
@@ -50,8 +50,8 @@ phases:
     max_submissions_per_day: 5  
     auto_migration: True    
     ingestion_program: ingestion_program.zip        # The ingestion program (the same for both phases)
-    input_data: 281a8de4-85d3-4064-84da-d684708d54f7                   # The data used by the ingestion program (and the code of the participants) in both phases
-    reference_data: 2fa07712-dc12-4766-ac22-059088b12569           # The truth values (solution) for phase 1 used by the scoring program
+    input_data: input_data.zip                      # The data used by the ingestion program (and the code of the participants) in both phases
+    reference_data: reference_data_2.zip            # The truth values (solution) for phase 1 used by the scoring program
     color: purple
 
 leaderboard:
