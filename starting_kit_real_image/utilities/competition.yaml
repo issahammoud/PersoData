@@ -4,7 +4,7 @@
 
 # Isabelle Guyon -- November 19, 2018
 
-title: Sample competition
+title: PersoData Challenge with raw image
 description: Sample competition M2AIC 2018-2019
 image: logo.jpg
 has_registration: False                 # We do not check participants, registration is free
@@ -35,10 +35,10 @@ phases:
     force_best_submission_to_leaderboard: True      # Participants will see their best submission on the leaderboard
     starting_kit: starting_kit.zip                  # The starting kit you prepared
     ingestion_program: ingestion_program.zip        # The ingestion program (the same for both phases)
-    public_data: input_data.zip                     # Same as input data (available for download by the participants)
-    input_data: input_data.zip                      # The data used by the ingestion program (and the code of the participants) in both phases
+    public_data: 7f05cb37-ff5c-4acc-a43d-27215c351cfb                   # Same as input data (available for download by the participants)
+    input_data: 7f05cb37-ff5c-4acc-a43d-27215c351cfb                   # The data used by the ingestion program (and the code of the participants) in both phases
     scoring_program: scoring_program.zip            # The scoring program (the same for both phases)
-    reference_data: reference_data_1.zip            # The truth values (solution) for phase 1 used by the scoring program
+    reference_data: a252d957-da4a-4b1b-ae5b-c30c98c77626           # The truth values (solution) for phase 1 used by the scoring program
     color: green   
   2:
     phasenumber: 2
@@ -50,8 +50,8 @@ phases:
     max_submissions_per_day: 5  
     auto_migration: True    
     ingestion_program: ingestion_program.zip        # The ingestion program (the same for both phases)
-    input_data: input_data.zip                      # The data used by the ingestion program (and the code of the participants) in both phases
-    reference_data: reference_data_2.zip            # The truth values (solution) for phase 1 used by the scoring program
+    input_data: 7f05cb37-ff5c-4acc-a43d-27215c351cfb                    # The data used by the ingestion program (and the code of the participants) in both phases
+    reference_data: f00e289d-5239-40b8-9570-cf95017be126        # The truth values (solution) for phase 1 used by the scoring program
     color: purple
 
 leaderboard:
